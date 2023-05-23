@@ -52,13 +52,17 @@ h1 {
 }
 
 .popup-img {
-  width: 50%;
-  height: 20rem;
+  width: 30%;
+  height: auto;
 }
 
 .features {
   display: grid;
   grid-template-columns: 50% 50%;
+  gap: 1rem;
+}
+.features :nth-child(4) {
+  grid-area: 2 / 2 / span 2 / span 1;
 }
 
 .comments-form {
