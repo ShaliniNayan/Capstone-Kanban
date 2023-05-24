@@ -1,6 +1,6 @@
 const RefreshList = async (likes) => {
   const response = await fetch(
-    'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0/'
+    'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0/',
   );
 
   const json = await response.json();
