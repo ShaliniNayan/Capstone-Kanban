@@ -36,3 +36,12 @@ h1 {
 .active {
   text-decoration-line: underline;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1% 10%;
+  background: #2468b1;
+}
