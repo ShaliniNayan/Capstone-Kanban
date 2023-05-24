@@ -15,7 +15,7 @@ import { getLikes } from './modules/like.js';
 //   console.log(appId) //C32ZcOUkgpZxhnt5Bm3z
 
 const asyncLikes = async () => {
-   RefreshPopup(3);
+  RefreshPopup(3);
   const likes = await getLikes();
   RefreshList(likes);
 };
