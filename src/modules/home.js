@@ -1,17 +1,22 @@
 const RefreshList = async (likes) => {
-  for (let i = 1; i < 21; i += 1) {
+  const response = await fetch(
+    'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0/'
+  );
+
+  const json = await response.json();
+
+  for (let i = 1; i < 20; i += 1) {
     let likesCount = 0;
     try {
       if (likes[i].likes !== undefined) {
         likesCount = likes[i].likes;
       }
-    } catch {}
+    } catch {
+      likesCount = 0;
+    }
 
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-    const json = await response.json();
-    const image = json.sprites.other.dream_world.front_default;
-    const name = json.name;
-    const id = json.id;
+    const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i}.svg`;
+    const { name } = json.results[i];
     const char = document.getElementById('char');
     char.innerHTML += `
     <li>
