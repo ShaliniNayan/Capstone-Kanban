@@ -1,19 +1,27 @@
-export default class Likes {
-    static likeUrl = '';
-  
-    static postLike = async (id) => {
-      const res = await fetch(this.likeUrl, {
-        method: 'POST',
-        headers: { 'Content-type': 'application/JSON' },
-        body: JSON.stringify({ item_id: id }),
-      });
-      const like = await res.text();
-      return like;
-    }
-  
-    static fetchLike = async () => {
-      const res = await fetch(this.likeUrl);
-      const like = await res.json();
-      return like;
-    }
+// import getGameId from './game_id.js'
+
+const appId = "C32ZcOUkgpZxhnt5Bm3z"; //getGameId() ;
+
+ const addLike = async (index) => {
+    const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes`;
+    const data = {
+      item_id: `item${index}`,
+    };
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.status;
   }
+  
+ const getLikes = async () => {
+    const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes`;
+    const response = await fetch(url);
+      const data = await response.json();
+      return data;
+  }
+
+  export { addLike, getLikes };
