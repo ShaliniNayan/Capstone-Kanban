@@ -4,10 +4,11 @@
   margin: 0;
   text-decoration: none;
   list-style-type: none;
+  font-family: 'Baumans', 'Courier New', Courier, monospace;
 }
 
 body {
-  padding: 1rem 4rem;
+  padding: 1rem 4rem 10rem;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -41,19 +42,40 @@ h1 {
   top: 1rem;
   left: 1rem;
   right: 1rem;
-  bottom: 1rem;
-  background-color: lightgray;
+  bottom: 3rem;
+  padding: 1rem;
+  background-color: lightgoldenrodyellow;
   position: fixed;
-  display: flex;
+  display: none;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 1rem;
   overflow-y: scroll;
+  color: darkslategray;
+  box-shadow: 0 0 16px 0 darkgoldenrod;
+}
+
+.poke-name {
+  align-self: center;
+  font-size: xx-large;
+}
+
+#comments-popup * {
+  padding: 0.5rem;
+}
+
+#char li * {
+  padding: 0.3rem;
+}
+
+#comments-popup > *:not(:first-child) {
+  margin: 0 5rem;
 }
 
 .popup-img {
-  width: 30%;
+  width: 40%;
   height: auto;
+  align-self: center;
 }
 
 .features {
@@ -72,6 +94,12 @@ h1 {
   flex-direction: column;
 }
 
+.close {
+  align-self: flex-start;
+  font-size: 48px;
+  cursor: pointer;
+}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -79,4 +107,48 @@ footer {
   right: 0;
   padding: 1% 10%;
   background: #2468b1;
+  color: white;
+}
+
+#char {
+  display: grid;
+  grid-template-columns: 18% 18% 18% 18% 18%;
+  gap: 2.5%;
+  grid-auto-rows: auto;
+  padding: 1rem;
+}
+
+#char li {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: stretch;
+  gap: 1rem;
+  background-color: yellow;
+  box-shadow: 2px 2px 8px 0 orange;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+#char li img {
+  max-width: 100%;
+  aspect-ratio: 1/1;
+}
+
+#char li p {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#char span {
+  align-self: center;
+}
+
+#char li p span {
+  cursor: pointer;
+}
+
+#char li p span:hover {
+  transform: scale(1.1);
 }

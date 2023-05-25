@@ -1,11 +1,11 @@
-// import getGameId from './game_id.js'
+import getGameId from './game_id.js';
 
-const appId = 'C32ZcOUkgpZxhnt5Bm3z'; // getGameId() ;
+const appId = getGameId();
 
 const addLike = async (index) => {
   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes`;
   const data = {
-    item_id: `item${index}`,
+    item_id: index.toString(),
   };
   const response = await fetch(url, {
     method: 'POST',
@@ -21,6 +21,11 @@ const getLikes = async () => {
   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes`;
   const response = await fetch(url);
   const data = await response.json();
-  return data;
+  const likesArray = [];
+  data.forEach((element) => {
+    likesArray[parseInt(element.item_id, 10)] = element.likes;
+  });
+  return likesArray;
 };
+
 export { addLike, getLikes };

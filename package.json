@@ -6,7 +6,8 @@
     "test": "jest",
     "watch": "jest --watch *.js",
     "start": "webpack serve --open",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
