@@ -34,7 +34,7 @@ npm run build
 
 ## Demo App
 
-**live demo** [here.]()
+**live demo** [here.](https://shalininayan.github.io/Capstone-Kanban/)
 
 ## Authors
 
