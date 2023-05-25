@@ -38,14 +38,3 @@ const closeIcon = document.querySelector('.close');
 closeIcon.addEventListener('click', () => {
   commentsPopup.style.display = 'none';
 });
-
-// async function createApp() {
-//   const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';
-//   const response = await fetch(url, {
-//     method: 'POST',
-//   });
-//   const data = await response.text();
-//   return data;
-// }
-// const appId = await createApp();
-// console.log(appId);
