@@ -1,24 +1,43 @@
 import previewImg from '../images/pokemon-preview.gif';
 import getGameId from './game_id.js';
 
+const commentsPopup = document.getElementById('comments-popup');
+const lastComments = document.querySelector('.last-comments');
+const commentsCount = document.querySelector('.comments-count');
+
 const appId = getGameId();
 const countComment = (counter) => {
   const newCount = counter + 1;
   return newCount;
 };
 const getComments = async (index) => {
-  const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/comments?item_id=item${index}`;
+  const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/comments?item_id=${index}`;
   const response = await fetch(url);
   const data = await response.json();
-  return data;
+
+  if (data.length !== undefined) {
+    lastComments.innerHTML = '';
+    let counter = 0;
+    for (let i = data.length - 1; i >= 0; i -= 1) {
+      lastComments.innerHTML += `
+            <li>
+            ${data[i].creation_date} ${data[i].username}: ${data[i].comment}
+            </li>
+            `;
+      counter = countComment(counter);
+    }
+    commentsCount.innerHTML = `(${counter})`;
+  } else {
+    commentsCount.innerHTML = '(0)';
+    lastComments.innerHTML = 'no comments...';
+  }
 };
+
 const RefreshPopup = async (index) => {
   const popupImg = document.querySelector('.popup-img');
   popupImg.src = previewImg;
   const pokeName = document.querySelector('.poke-name');
   const features = document.querySelector('.features');
-  const lastComments = document.querySelector('.last-comments');
-  const commentsCount = document.querySelector('.comments-count');
   const commentsForm = document.querySelector('.comments-form');
 
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
@@ -48,31 +67,15 @@ const RefreshPopup = async (index) => {
     <li>Base Experience: ${json.base_experience}</li>
     `;
 
-  const comments = await getComments(index);
-  if (comments.length !== undefined) {
-    lastComments.innerHTML = '';
-    let counter = 0;
-    for (let i = comments.length - 1; i >= 0; i -= 1) {
-      lastComments.innerHTML += `
-            <li>
-            ${comments[i].creation_date} ${comments[i].username}: ${comments[i].comment}
-            </li>
-            `;
-      counter = countComment(counter);
-    }
-    commentsCount.innerHTML = `(${counter})`;
-  } else {
-    commentsCount.innerHTML = '(0)';
-    lastComments.innerHTML = 'no comments...';
-  }
+  await getComments(index);
 
-  const addComment = async (index) => {
+  const addComment = async () => {
     const username = document.getElementById('username');
     const comment = document.getElementById('comment');
 
     const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/comments`;
     const data = {
-      item_id: `item${index}`,
+      item_id: index.toString(),
       username: username.value,
       comment: comment.value,
     };
@@ -83,15 +86,20 @@ const RefreshPopup = async (index) => {
         'Content-Type': 'application/json',
       },
     });
-    username.value = '';
-    comment.value = '';
-    RefreshPopup(index);
+
+    await getComments(index);
     return response;
   };
-
   commentsForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    addComment(index);
+    const username = document.getElementById('username');
+    const comment = document.getElementById('comment');
+    addComment();
+    commentsPopup.scrollTo(0, -100);
+    username.value = '';
+    comment.value = '';
+    const clonedElement = commentsForm.cloneNode(true);
+    commentsForm.parentNode.replaceChild(clonedElement, commentsForm);
   });
   popupImg.src = json.sprites.other['official-artwork'].front_default;
 };

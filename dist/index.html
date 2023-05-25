@@ -4,30 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Baumans' rel='stylesheet'>
+    <title>Capstone Project 2</title>
 <script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script></head>
 <body>
     <div class="main">
         <header>
-            <h1>Pokemons Logo</h1>
+            <h1>Pokemons</h1>
             <ul class="menu">
                 <li class="active">
-                    <a href="">Pokemons <span class="count">(6)</span></a>
+                    <a href="">Pokemons <span class="count">(20)</span></a>
                     
                 </li>
                 <li>
-                    <a href="">Planets</a>
+                    <a href="">Contact</a>
                     
                 </li>
                 <li>
-                    <a href="">Races</a>
+                    <a href="">About</a>
                     
                 </li>
             </ul>
         </header>
+    <div id="item-container">
+        <ul id="char">
+          <!-- list -->
+        </ul>
+    </div>
 
         <div id="comments-popup">
-
+            <span class="close">✖</span>
             <img class="popup-img" alt="Preview image">
             <h2 class="poke-name">Pokemon's Name</h2>
             <ul class="features">
@@ -41,12 +47,12 @@
             <form class="comments-form">
                 <input id="username" type="text" placeholder="Your name">
                 <textarea name="" id="comment" cols="30" rows="10" placeholder="Your insights"></textarea>
-                <button class="comment-btn">
+                <button href="#comments-popup" class="comment-btn" >
                     Commnet
                 </button>
             </form>
         </div>
-    </div>
+
     <footer>
         <p>Created by Shalini and Mohamad under the CC license</p>
     </footer>
