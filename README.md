@@ -21,7 +21,6 @@
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
-  - [Usage](#usage)
   - [Run tests](#run-tests)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
@@ -108,6 +107,27 @@ Clone this repository to your desired folder:
 How to open your project in the browser? 
 Double click on HTML file and the HTML file will be open in your browser.
 
+### Run tests
+
+To run tests, run the following command:
+
+```sh
+  npm install --save-dev jest
+  npm install --save-dev @babel/plugin-transform-modules-commonjs
+  npm install --save-dev jest-environment-jsdom
+  npm install jquery
+  npm install --save-dev identity-obj-proxy
+  npm test
+```
+
+### Deployment
+
+You can deploy this project using:
+
+```sh
+  npm install gh-pages
+  npm run deploy 
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
